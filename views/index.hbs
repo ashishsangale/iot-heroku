@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Iot Project</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<style>
+    #lati,#longi{
+        color: red;
+    }
+    span{
+        font-family: monospace;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+</style>
+<body onload="displayLocation()">
+    <div class="container proj">
+        <label for="lat">Latitude</label>
+        <p  id="lati"></p>
+
+        <br>
+        <label for="long">Longitude</label>
+        <p  id="longi"></p>
+        <br>
+        <button id="weather-btn" onclick="getWeatherData()" class="btn btn-default">Get weather data</button>
+
+        <ul class="result">
+            <h2>Result</h2>
+            <li >Timezone: <span id="time">{{data.timezone}}</span></li>
+            <li >Temperature: <span id="temp"></span> {{data.temp}}oC</li>
+            <li >Description: <span id="desc">{{data.desc}}</span></li>
+        </ul>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.5.4/firebase.js"></script>
+
+      <script type="text/javascript" src="./public/js/moment.js"></script>
+    <script type="text/javascript" src="./public/js/main.js"></script>
+</body>
+</html>
