@@ -12,8 +12,8 @@ var config = {
 firebase.initializeApp(config);
 var database=firebase.database();
 
-var ref=database.ref('weather');
-
+var rootRef=database.ref('weather');
+console.log(rootRef.key);
 //console.log(firebase);
 
 //normal
@@ -56,6 +56,9 @@ function getWeatherData(){
 
         locationBtn.removeAttr('disabled').text('Get weather data');
         res.data.time=dt;
-        ref.push(res.data);
+        rootRef.update({timezone:`${res.data.timezone}`,
+            temp:`${res.data.temp}`,
+            desc:`${res.data.desc}`,
+            time:`${res.data.time}`});
     });
 }
