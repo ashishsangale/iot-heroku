@@ -21,12 +21,16 @@ let data=[];
 var x=document.getElementById('lati');
 var y=document.getElementById('longi');
 let darkSky=`https://api.darksky.net/forecast/453b6b86d62f88b6cec61505d3629ba7/`;
-
+var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
 function displayLocation()
 {
     if(navigator.geolocation)
     {
-        navigator.geolocation.getCurrentPosition(showPosition);
+        navigator.geolocation.getCurrentPosition(showPosition,null,options);
     }
     else
     {
@@ -42,7 +46,8 @@ function showPosition(position) {
 
 
 function getWeatherData(){
-
+    let lat=x.innerHTML,
+        long=y.innerHTML;
     darkSky=darkSky+`${x.innerHTML},${y.innerHTML}?units=si`;
     var locationBtn=$('#weather-btn');
     // console.log(darkSky);
@@ -55,10 +60,19 @@ function getWeatherData(){
         $('#desc').html(res.data.desc);
 
         locationBtn.removeAttr('disabled').text('Get weather data');
+
+        //location link updation
+        $('#pos-link').text('You are here on Google Maps!');
+        $('#pos-link').attr('href',`https://google.com/maps?q=${lat},${long}`);
+
         res.data.time=dt;
-        rootRef.update({timezone:`${res.data.timezone}`,
+        rootRef.update({
+            latitude:lat,
+            longitude:long,
+            timezone:`${res.data.timezone}`,
             temp:`${res.data.temp}`,
             desc:`${res.data.desc}`,
-            time:`${res.data.time}`});
+            time:`${res.data.time}`,
+        });
     });
 }

@@ -16,9 +16,21 @@
         font-size: 2rem;
         font-weight: bold;
     }
+    .desc{
+        text-align: center;
+        font-family: monospace;
+        font-size: 1.5rem;
+        border: 1px solid #eee;
+        background-color: crimson;
+        color: white;
+        padding: 20px;
+    }
 </style>
 <body onload="displayLocation()">
     <div class="container proj">
+        <section class="desc">
+            A weather detection project built on NodeMCU(ESP8266),WebApp and LCD display!
+        </section>
         <label for="lat">Latitude</label>
         <p  id="lati"></p>
 
@@ -33,6 +45,7 @@
             <li >Timezone: <span id="time">{{data.timezone}}</span></li>
             <li >Temperature: <span id="temp"></span> {{data.temp}}oC</li>
             <li >Description: <span id="desc">{{data.desc}}</span></li>
+            <li> Position: <a href="" target="_blank" id="pos-link"></a> </li>
         </ul>
     </div>
 
